@@ -16,7 +16,7 @@
 		BBB5ABE5215E2217005B48B6 /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB5ABE1215E2217005B48B6 /* Compression.swift */; };
 		BBB5ABE6215E2217005B48B6 /* SSLClientCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB5ABE2215E2217005B48B6 /* SSLClientCertificate.swift */; };
 		BBB5ABE7215E2217005B48B6 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB5ABE3215E2217005B48B6 /* SSLSecurity.swift */; };
-		BBB5ABE8215E2217005B48B6 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB5ABE4215E2217005B48B6 /* WebSocket.swift */; };
+		BBB5ABE8215E2217005B48B6 /* WebSocketStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB5ABE4215E2217005B48B6 /* WebSocketStar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		BBB5ABE1215E2217005B48B6 /* Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Compression.swift; path = Starscream/Compression.swift; sourceTree = "<group>"; };
 		BBB5ABE2215E2217005B48B6 /* SSLClientCertificate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SSLClientCertificate.swift; path = Starscream/SSLClientCertificate.swift; sourceTree = "<group>"; };
 		BBB5ABE3215E2217005B48B6 /* SSLSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Starscream/SSLSecurity.swift; sourceTree = "<group>"; };
-		BBB5ABE4215E2217005B48B6 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Starscream/WebSocket.swift; sourceTree = "<group>"; tabWidth = 4; };
+		BBB5ABE4215E2217005B48B6 /* WebSocketStar.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; name = WebSocketStar.swift; path = Starscream/WebSocketStar.swift; sourceTree = "<group>"; tabWidth = 4; };
 		D88EAF811ED4DFD3004FE2C3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D88EAF831ED4E7D8004FE2C3 /* CompressionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompressionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,7 +80,7 @@
 				BBB5ABE1215E2217005B48B6 /* Compression.swift */,
 				BBB5ABE2215E2217005B48B6 /* SSLClientCertificate.swift */,
 				BBB5ABE3215E2217005B48B6 /* SSLSecurity.swift */,
-				BBB5ABE4215E2217005B48B6 /* WebSocket.swift */,
+				BBB5ABE4215E2217005B48B6 /* WebSocketStar.swift */,
 				5C1360001C473BEF00AA3A01 /* Starscream.h */,
 				6B3E79E919D48B7F006071F7 /* Supporting Files */,
 			);
@@ -232,7 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB5ABE5215E2217005B48B6 /* Compression.swift in Sources */,
-				BBB5ABE8215E2217005B48B6 /* WebSocket.swift in Sources */,
+				BBB5ABE8215E2217005B48B6 /* WebSocketStar.swift in Sources */,
 				BBB5ABE7215E2217005B48B6 /* SSLSecurity.swift in Sources */,
 				BBB5ABE6215E2217005B48B6 /* SSLClientCertificate.swift in Sources */,
 			);

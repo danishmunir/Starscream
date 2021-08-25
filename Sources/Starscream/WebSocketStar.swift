@@ -324,16 +324,16 @@ public protocol WebSocketPongDelegate: class {
 
 // A Delegate with more advanced info on messages and connection etc.
 public protocol WebSocketAdvancedDelegate: class {
-    func websocketDidConnect(socket: WebSocket)
-    func websocketDidDisconnect(socket: WebSocket, error: Error?)
-    func websocketDidReceiveMessage(socket: WebSocket, text: String, response: WebSocket.WSResponse)
-    func websocketDidReceiveData(socket: WebSocket, data: Data, response: WebSocket.WSResponse)
-    func websocketHttpUpgrade(socket: WebSocket, request: String)
-    func websocketHttpUpgrade(socket: WebSocket, response: String)
+    func websocketDidConnect(socket: WebSocketStar)
+    func websocketDidDisconnect(socket: WebSocketStar, error: Error?)
+    func websocketDidReceiveMessage(socket: WebSocketStar, text: String, response: WebSocketStar.WSResponse)
+    func websocketDidReceiveData(socket: WebSocketStar, data: Data, response: WebSocketStar.WSResponse)
+    func websocketHttpUpgrade(socket: WebSocketStar, request: String)
+    func websocketHttpUpgrade(socket: WebSocketStar, response: String)
 }
 
 
-open class WebSocket : NSObject, StreamDelegate, WebSocketClient, WSStreamDelegate {
+open class WebSocketStar : NSObject, StreamDelegate, WebSocketClient, WSStreamDelegate {
 
     public enum OpCode : UInt8 {
         case continueFrame = 0x0
@@ -1023,7 +1023,7 @@ open class WebSocket : NSObject, StreamDelegate, WebSocketClient, WSStreamDelega
                 if payloadLen == 1 {
                     closeCode = CloseCode.protocolError.rawValue
                 } else if payloadLen > 1 {
-                    closeCode = WebSocket.readUint16(baseAddress, offset: offset)
+                    closeCode = WebSocketStar.readUint16(baseAddress, offset: offset)
                     if closeCode < 1000 || (closeCode > 1003 && closeCode < 1007) || (closeCode > 1013 && closeCode < 3000) {
                         closeCode = CloseCode.protocolError.rawValue
                     }
@@ -1039,10 +1039,10 @@ open class WebSocket : NSObject, StreamDelegate, WebSocketClient, WSStreamDelega
             }
             var dataLength = UInt64(payloadLen)
             if dataLength == 127 {
-                dataLength = WebSocket.readUint64(baseAddress, offset: offset)
+                dataLength = WebSocketStar.readUint64(baseAddress, offset: offset)
                 offset += MemoryLayout<UInt64>.size
             } else if dataLength == 126 {
-                dataLength = UInt64(WebSocket.readUint16(baseAddress, offset: offset))
+                dataLength = UInt64(WebSocketStar.readUint16(baseAddress, offset: offset))
                 offset += MemoryLayout<UInt16>.size
             }
             if bufferLen < offset || UInt64(bufferLen - offset) < dataLength {
@@ -1206,7 +1206,7 @@ open class WebSocket : NSObject, StreamDelegate, WebSocketClient, WSStreamDelega
     private func writeError(_ code: UInt16) {
         let buf = NSMutableData(capacity: MemoryLayout<UInt16>.size)
         let buffer = UnsafeMutableRawPointer(mutating: buf!.bytes).assumingMemoryBound(to: UInt8.self)
-        WebSocket.writeUint16(buffer, offset: 0, value: code)
+        WebSocketStar.writeUint16(buffer, offset: 0, value: code)
         dequeueWrite(Data(bytes: buffer, count: MemoryLayout<UInt16>.size), code: .connectionClose)
     }
 
@@ -1241,11 +1241,11 @@ open class WebSocket : NSObject, StreamDelegate, WebSocketClient, WSStreamDelega
                 buffer[1] = CUnsignedChar(dataLength)
             } else if dataLength <= Int(UInt16.max) {
                 buffer[1] = 126
-                WebSocket.writeUint16(buffer, offset: offset, value: UInt16(dataLength))
+                WebSocketStar.writeUint16(buffer, offset: offset, value: UInt16(dataLength))
                 offset += MemoryLayout<UInt16>.size
             } else {
                 buffer[1] = 127
-                WebSocket.writeUint64(buffer, offset: offset, value: UInt64(dataLength))
+                WebSocketStar.writeUint64(buffer, offset: offset, value: UInt64(dataLength))
                 offset += MemoryLayout<UInt64>.size
             }
             buffer[1] |= self.MaskMask
